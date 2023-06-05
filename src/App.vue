@@ -10,26 +10,18 @@ export default {
 </script>
 
 <template>
-  <div class="app">
-    <div>
-      <a href="https://vitejs.dev" target="_blank">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
-      </a>
-      <a href="https://vuejs.org/" target="_blank">
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-      </a>
-    </div>
+  <div id="app">
+    <h1>Hello App!</h1>
+    <p>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </p>
 
-    <HelloWorld msg="Vite + Vue" />
+    <router-view></router-view>
   </div>
 </template>
 
 <style scoped>
-.app {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 .logo {
   height: 6em;
   padding: 1.5em;
