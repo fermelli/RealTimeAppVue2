@@ -31,5 +31,12 @@ module.exports = (httpServer) => {
     socket.on("disconnect", () => {
       console.log("El cliente se ha desconectado");
     });
+
+    // Escuchar el evento "comentario"
+    socket.on("comentario", (datos) => {
+      console.log(datos);
+
+      io.emit("nuevo-comentario", datos);
+    });
   });
 };
