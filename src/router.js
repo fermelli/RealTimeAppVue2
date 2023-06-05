@@ -10,25 +10,26 @@ const routes = [
     path: "/",
     name: "home",
     component: () => import("@/views/Home.vue"),
-    props: true,
   },
   {
     path: "/about",
     name: "about",
     component: () => import("@/views/About.vue"),
-    props: true,
   },
   {
     path: "/registro",
     name: "registro",
     component: () => import("@/views/Registro.vue"),
-    props: true,
   },
   {
     path: "/panel-compras",
     name: "panel-compras",
     component: () => import("@/views/PanelCompras.vue"),
-    props: true,
+  },
+  {
+    path: "/panel-chat",
+    name: "panel-chat",
+    component: () => import("@/views/PanelChat.vue"),
   },
 ];
 

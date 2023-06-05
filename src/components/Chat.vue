@@ -21,7 +21,7 @@ export default {
 
       // Hacer scroll hacia abajo
       this.$nextTick(() => {
-        this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
+        this.$refs.chatRef.scrollTop = this.$refs.chatRef?.scrollHeight;
       });
     });
   },
@@ -50,7 +50,7 @@ export default {
 
 <template>
   <div class="chat-container">
-    <div class="chat" ref="chat">
+    <div class="chat" ref="chatRef">
       <div
         v-for="(chat, indice) in chats"
         :key="indice"

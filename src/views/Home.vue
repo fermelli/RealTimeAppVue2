@@ -28,6 +28,13 @@ export default {
       productoSeleccionado: null,
     };
   },
+  computed: {
+    mensajeInicial() {
+      return this.productoSeleccionado
+        ? `Hola, alguien me puede comentar sobre el producto ${this.productoSeleccionado.nombre}`
+        : "";
+    },
+  },
   methods: {
     comprar(productoId) {
       this.productoSeleccionado = this.productos.find(
@@ -91,9 +98,7 @@ export default {
     </b-row>
 
     <b-modal id="modalChat" title="Chat" size="xl" hide-footer>
-      <Chat
-        :mensajeInicial="`Hola, alguien me puede comentar sobre el producto ${this.productoSeleccionado.nombre}`"
-      />
+      <Chat :mensajeInicial="mensajeInicial" />
     </b-modal>
   </b-container>
 </template>
