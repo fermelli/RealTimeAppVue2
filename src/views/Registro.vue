@@ -51,8 +51,16 @@ export default {
       // Crear cookie con el rol del usuario
       document.cookie = `rol=${this.form.rol}`;
 
-      // Redireccionar a la página principal
-      document.location.href = "/";
+      // Crear objeto con los datos del usuario
+      const datosUsuario = {
+        usuario: this.form.usuario,
+        rol: this.form.rol,
+      };
+
+      this.$store.dispatch("setDatosUsuario", datosUsuario);
+
+      // Redireccionar a la página de productos
+      this.$router.push({ name: "home" });
     },
   },
 };

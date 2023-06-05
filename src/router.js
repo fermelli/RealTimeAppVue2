@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { obtenerDatoCookie } from "./utils";
+import store from "./store";
 
 Vue.use(VueRouter);
 
@@ -49,12 +50,15 @@ router.beforeEach((to, from, next) => {
     return next({ name: "registro" });
   }
 
-  // Si el usuario existe y está en la página de registro, redireccionar a la página de inicio
-  if (usuario && rol && to.name === "registro") {
-    return next({ name: "home" });
+  if (usuario && rol) {
+    store.dispatch("setDatosUsuario", { usuario, rol });
+
+    // Si el usuario existe y está en la página de registro, redireccionar a la página de inicio
+    if (to.name === "registro") {
+      return next({ name: "home" });
+    }
   }
 
-  // Si el usuario existe y está en la página de inicio, redireccionar a la página de compras
   return next();
 });
 

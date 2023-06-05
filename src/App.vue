@@ -12,7 +12,7 @@ import {
   BNavItemDropdown,
   BDropdownItem,
 } from "bootstrap-vue";
-import { obtenerDatoCookie } from "./utils";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -29,23 +29,8 @@ export default {
     BNavItemDropdown,
     BDropdownItem,
   },
-  data() {
-    return {
-      usuario: null,
-      rol: null,
-    };
-  },
-  created() {
-    // Obtener el nombre del usuario de la cookie
-    const usuario = obtenerDatoCookie("usuario");
-    // Obtener el rol del usuario de la cookie
-    const rol = obtenerDatoCookie("rol");
-
-    // Si el usuario y el rol existen, asignarlos a las variables
-    if (usuario && rol) {
-      this.usuario = usuario;
-      this.rol = rol;
-    }
+  computed: {
+    ...mapGetters(["getDatosUsuario"]),
   },
 };
 </script>
@@ -59,7 +44,9 @@ export default {
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item v-if="!usuario || !rol" :to="{ name: 'registro' }"
+          <b-nav-item
+            v-if="!getDatosUsuario.usuario || !getDatosUsuario.rol"
+            :to="{ name: 'registro' }"
             >Registro</b-nav-item
           >
           <b-nav-item :to="{ name: 'panel-compras' }"
@@ -69,8 +56,12 @@ export default {
 
         <b-navbar-nav class="ml-auto">
           <div>
-            <strong class="d-block text-white mr-2">{{ usuario }}</strong>
-            <small class="d-block text-white mr-2">{{ rol }}</small>
+            <strong class="d-block text-white mr-2">{{
+              getDatosUsuario.usuario
+            }}</strong>
+            <small class="d-block text-white mr-2">{{
+              getDatosUsuario.rol
+            }}</small>
           </div>
         </b-navbar-nav>
       </b-collapse>
