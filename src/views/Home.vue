@@ -43,8 +43,8 @@ export default {
                         {{ producto.descripcion }}
                     </b-card-text>
 
-                    <b-button variant="primary" @click="comprar(producto.id)">Comprar</b-button>
-                    <b-button class="ml-2" variant="secondary">chatear</b-button>
+                    <b-button class="my-1" variant="primary" @click="comprar(producto.id)">Comprar</b-button>
+                    <b-button class="ml-2 my-1" variant="secondary">Chatear</b-button>
                 </b-card>
             </b-col>
         </b-row>

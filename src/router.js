@@ -18,7 +18,12 @@ const routes = [
         path: '/registro',
         name: 'registro',
         component: () => import('@/views/Registro.vue')
-    }
+    },
+    {
+        path: '/panel-compras',
+        name: 'panel-compras',
+        component: () => import('@/views/PanelCompras.vue')
+    },
 ];
 
 const router = new VueRouter({

@@ -63,6 +63,7 @@ export default {
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item :to="{ name: 'registro' }">Registro</b-nav-item>
+          <b-nav-item :to="{ name: 'panel-compras' }">Panel de compras</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
