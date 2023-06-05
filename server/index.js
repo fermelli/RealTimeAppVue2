@@ -13,13 +13,13 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const httpServer = createServer(app);
 //configuraciones
-const PORT = 3000;
+const PORT = 3001;
 app.set("port", PORT);
 app.use(cookieParser());
 
 // Iniciar el servidor
 httpServer.listen(PORT, () => {
-    console.log("El servidor está corriendo en el puerto", PORT);
+  console.log("El servidor está corriendo en el puerto", PORT);
 });
 
 // Llamar al  servidor de Socket.io

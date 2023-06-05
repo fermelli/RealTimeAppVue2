@@ -1,8 +1,21 @@
 <script>
-import { BNavbar, BNavbarBrand, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavForm, BFormInput, BButton, BNavItemDropdown, BDropdownItem } from 'bootstrap-vue'
+import {
+  BNavbar,
+  BNavbarBrand,
+  BCollapse,
+  BNavbarNav,
+  BNavItem,
+  BNavbarToggle,
+  BNavForm,
+  BFormInput,
+  BButton,
+  BNavItemDropdown,
+  BDropdownItem,
+} from "bootstrap-vue";
+import { obtenerDatoCookie } from "./utils";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     BNavbar,
     BNavbarBrand,
@@ -20,37 +33,21 @@ export default {
     return {
       usuario: null,
       rol: null,
-    }
+    };
   },
   created() {
     // Obtener el nombre del usuario de la cookie
-    const usuario = this.obtenerDatoCookie('usuario');
+    const usuario = obtenerDatoCookie("usuario");
     // Obtener el rol del usuario de la cookie
-    const rol = this.obtenerDatoCookie('rol');
+    const rol = obtenerDatoCookie("rol");
 
-    // Si el usuario no existe, redireccionar a la página de registro
-    if ((!usuario || !rol) && this.$route.name !== 'registro') {
-      document.location.href = "/registro";
+    // Si el usuario y el rol existen, asignarlos a las variables
+    if (usuario && rol) {
+      this.usuario = usuario;
+      this.rol = rol;
     }
-
-    // Asignar el nombre del usuario
-    this.usuario = usuario;
-    // Asignar el rol del usuario
-    this.rol = rol;
   },
-  methods: {
-    obtenerDatoCookie(nombre) {
-      // Obtener todas las cookies
-      const cookies = document.cookie.split(';');
-      // Buscar la cookie por el nombre
-      const cookie = cookies.find(cookie => cookie.trim().startsWith(nombre));
-      // Si no existe la cookie, retornar null
-      if (!cookie) return null;
-      // Retornar el valor de la cookie
-      return cookie.split('=')[1];
-    },
-  }
-}
+};
 </script>
 
 <template>
@@ -62,8 +59,12 @@ export default {
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item :to="{ name: 'registro' }">Registro</b-nav-item>
-          <b-nav-item :to="{ name: 'panel-compras' }">Panel de compras</b-nav-item>
+          <b-nav-item v-if="!usuario || !rol" :to="{ name: 'registro' }"
+            >Registro</b-nav-item
+          >
+          <b-nav-item :to="{ name: 'panel-compras' }"
+            >Panel de compras</b-nav-item
+          >
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
