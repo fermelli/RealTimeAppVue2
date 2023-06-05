@@ -31,6 +31,17 @@ const routes = [
     name: "panel-chat",
     component: () => import("@/views/PanelChat.vue"),
   },
+  {
+    path: "/productos/:id",
+    name: "producto",
+    component: () => import("@/views/Producto.vue"),
+    props: true,
+  },
+  {
+    path: "/no-encontrado",
+    name: "no-encontrado",
+    component: () => import("@/views/NoEncontrado.vue"),
+  },
 ];
 
 const router = new VueRouter({

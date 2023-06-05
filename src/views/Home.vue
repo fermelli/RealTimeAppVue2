@@ -4,6 +4,7 @@ import {
   BRow,
   BCol,
   BCard,
+  BCardBody,
   BCardText,
   BButton,
 } from "bootstrap-vue";
@@ -18,6 +19,7 @@ export default {
     BRow,
     BCol,
     BCard,
+    BCardBody,
     BCardText,
     BButton,
     Chat,
@@ -77,6 +79,13 @@ export default {
         >
           <b-card-text>
             {{ producto.descripcion }}
+
+            <router-link
+              class="d-inline"
+              :to="{ name: 'producto', params: { id: producto.id } }"
+            >
+              Ver más
+            </router-link>
           </b-card-text>
 
           <b-button
