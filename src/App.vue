@@ -1,39 +1,38 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { BNavbar, BNavbarBrand, BCollapse, BNavbarNav, BNavItem, BNavbarToggle, BNavForm, BFormInput, BButton, BNavItemDropdown, BDropdownItem } from 'bootstrap-vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    BNavbar,
+    BNavbarBrand,
+    BCollapse,
+    BNavbarNav,
+    BNavItem,
+    BNavbarToggle,
+    BNavForm,
+    BFormInput,
+    BButton,
+    BNavItemDropdown,
+    BDropdownItem,
   },
 }
 </script>
 
 <template>
-  <div id="app">
-    <h1>Hello App!</h1>
-    <p>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </p>
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="primary">
+      <b-navbar-brand :to="{ name: 'home' }">Inicio</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item :to="{ name: 'registro' }">Registro</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
 
     <router-view></router-view>
   </div>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

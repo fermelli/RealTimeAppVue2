@@ -23,10 +23,3 @@ export default {
         <HelloWorld msg="Vite + Vue" />
     </div>
 </template>
-
-<style scoped>
-.home {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-</style>
