@@ -1,6 +1,11 @@
 <script>
 import { BContainer, BRow, BCol, BTable } from 'bootstrap-vue'
 import socket from '@/socket.js'
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { generarColoresAleatorios } from '@/utils.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
     name: 'PanelCompras',
@@ -9,6 +14,7 @@ export default {
         BRow,
         BCol,
         BTable,
+        Bar,
     },
     data() {
         return {
@@ -16,10 +22,14 @@ export default {
             campos: [
                 { key: 'id', label: 'Id.' },
                 { key: 'nombre', label: 'Nombre' },
-                { key: 'precio', label: 'Precio' },
                 { key: 'cantidad', label: 'Cantidad' },
+                { key: 'precio', label: 'Precio' },
                 { key: 'subtotal', label: 'Subtotal' },
             ],
+            chartOptions: {
+                responsive: true
+            },
+            coloresFondo: generarColoresAleatorios(10),
         }
     },
     created() {
@@ -43,6 +53,18 @@ export default {
             }
         });
     },
+    computed: {
+        chartData() {
+            return {
+                labels: this.productosComprados.map(producto => producto.nombre),
+                datasets: [{
+                    label: 'Cantidad',
+                    backgroundColor: this.coloresFondo,
+                    data: this.productosComprados.map(producto => producto.cantidad)
+                }]
+            }
+        },
+    }
 }
 </script>
 
@@ -59,6 +81,10 @@ export default {
                     <template #emptyfiltered="scope">
                         <h6 class="text-center">No hay registros para mostrar</h6>
                     </template></b-table>
+            </b-col>
+
+            <b-col cols="12">
+                <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
             </b-col>
         </b-row>
     </b-container>
