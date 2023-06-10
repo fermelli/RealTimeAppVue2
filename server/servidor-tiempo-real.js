@@ -1,10 +1,23 @@
 module.exports = (httpServer) => {
   const { Server } = require("socket.io");
+  const { instrument } = require("@socket.io/admin-ui");
+
   const io = new Server(httpServer, {
     cors: {
       origin: "*",
       methods: ["GET", "POST"],
+      // credentials: true,
     },
+  });
+
+  instrument(io, {
+    // auth: false,
+    auth: {
+      type: "basic",
+      username: "omar",
+      password: "$2a$12$UO1ggJprgy2w8wZWbfxfC.Dav2VIe8crPz7IGIOHo6WQADK6ZsoLm", // "omarOmar54321" encriptado con bcrypt
+    },
+    mode: "development",
   });
 
   // Cuando un cliente se conecta

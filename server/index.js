@@ -3,6 +3,8 @@ const express = require("express");
 
 const { createServer } = require("http");
 
+const path = require("path");
+
 // Importar el servidor de Socket.io
 const servidorRealtime = require("./servidor-tiempo-real");
 
@@ -16,6 +18,12 @@ const httpServer = createServer(app);
 const PORT = 3001;
 app.set("port", PORT);
 app.use(cookieParser());
+
+// Definicion de rutas
+app.use(require("./routes.js"));
+
+// Servir archivos estaticos para que el navegador pueda acceder a ellos
+app.use(express.static(path.join(__dirname, "socket.io-admin-ui")));
 
 // Iniciar el servidor
 httpServer.listen(PORT, () => {
