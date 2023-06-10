@@ -1,3 +1,6 @@
+// // cargar variables de entorno
+// require("dotenv").config();
+
 module.exports = (httpServer) => {
   const { Server } = require("socket.io");
   const { instrument } = require("@socket.io/admin-ui");
@@ -14,8 +17,10 @@ module.exports = (httpServer) => {
     // auth: false,
     auth: {
       type: "basic",
-      username: "omar",
-      password: "$2a$12$UO1ggJprgy2w8wZWbfxfC.Dav2VIe8crPz7IGIOHo6WQADK6ZsoLm", // "omarOmar54321" encriptado con bcrypt
+      username: process.env.SOCKET_ADMIN_UI_USERNAME || "admin",
+      password:
+        process.env.SOCKET_ADMIN_UI_PASSWORD ||
+        "a$2a$12$z2GkYy21wBEcfP82kal0H.mTVx/OdxJ2Bfi8yJOmYHhmdYSZi6xIi", // password
     },
     mode: "development",
   });

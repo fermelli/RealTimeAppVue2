@@ -1,3 +1,6 @@
+// Cargar variables de entorno
+require("dotenv").config();
+
 // Instanciar el servidor de Express
 const express = require("express");
 
@@ -15,7 +18,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const httpServer = createServer(app);
 //configuraciones
-const PORT = 3001;
+const PORT = process.env.PORT || 3000;
 app.set("port", PORT);
 app.use(cookieParser());
 
